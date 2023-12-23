@@ -25,3 +25,7 @@ python_versions:
 additional_ignore:
   - html_cache
   - old
+
+extra_lint_paths:
+  - plot.py
+  - get_data.py
