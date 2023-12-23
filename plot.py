@@ -111,4 +111,4 @@ for library_name in libraries:
 			):
 		marker.add_to(m)
 
-m.save("books.html")
+m.save("books/index.html")
