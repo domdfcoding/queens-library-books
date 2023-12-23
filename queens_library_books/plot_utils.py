@@ -61,7 +61,7 @@ def make_markers(
 	circle_marker = folium.CircleMarker(location=location, radius=5, weight=20, color=colour)
 
 	text_html = f"<div style='display: flex; justify-content: center; align-items: center; font-size: 20pt'>{book_count}</div>"
-	popup_html = f"<h3><a href='{get_url_for_library(library)}' target='_blank'>{library}</a></h3>{popup_book_name[0]}<br>{popup_book_name[1]}<br>Most popular book at {book_count} libraries"
+	popup_html = f"<h3><a href='{get_url_for_library(library)}' target='_blank'>{library}</a></h3><h4>{popup_book_name[0]}</h4><h5>{popup_book_name[1]}</h5>Most popular book at {book_count} libraries"
 
 	text_marker = folium.Marker(
 			location=location,
