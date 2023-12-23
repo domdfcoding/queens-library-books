@@ -47,6 +47,9 @@ directives = [ "code-block",]
 [tool.dependency-dash."requirements.txt"]
 order = 10
 
+[tool.dep_checker.name_mapping]
+beautifulsoup4 = "bs4"
+
 [tool.snippet-fmt.languages.python]
 reformat = true
 
