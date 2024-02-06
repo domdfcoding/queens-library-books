@@ -67,7 +67,7 @@ queens-library-books
 	:target: https://github.com/domdfcoding/queens-library-books/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2023
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2024
 	:alt: Maintenance
 
 .. end shields
