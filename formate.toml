@@ -32,4 +32,4 @@ use_parentheses = true
 remove_redundant_aliases = true
 default_section = "THIRDPARTY"
 known_third_party = [ "beautifulsoup4", "domdf_python_tools", "folium", "httpx", "shapely",]
-known_first_party = "queens_library_books"
+known_first_party = [ "queens_library_books",]
