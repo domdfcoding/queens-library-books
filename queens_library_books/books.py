@@ -30,7 +30,7 @@ Functions to parse book data.
 from typing import Dict
 
 # 3rd party
-import bs4  # type: ignore[import]
+import bs4
 import httpx
 
 __all__ = ("get_queens_popular_books_2023", )
@@ -47,7 +47,9 @@ def get_queens_popular_books_2023() -> Dict[str, str]:
 	response = httpx.get(books_url)
 
 	soup = bs4.BeautifulSoup(response.text, "html.parser")
-	by_location_div = soup.find("div", {"id": "idmSge3"}).find("div", {"id": "mce_23"})
+	idm_div = soup.find("div", {"id": "idmSge3"})
+	assert idm_div is not None
+	by_location_div = idm_div.find("div", {"id": "mce_23"})  # type: ignore[attr-defined]
 
 	books = {}
 	for location_p in by_location_div.children:

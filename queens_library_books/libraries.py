@@ -30,7 +30,7 @@ Functions to parse library locations from Wikipedia.
 from typing import Dict, Optional, Tuple
 
 # 3rd party
-import bs4  # type: ignore[import]
+import bs4
 import httpx
 
 __all__ = ("get_queens_library_locations", )
@@ -48,9 +48,10 @@ def _get_queens_library_street_addresses() -> Dict[str, str]:
 
 	locations_soup = bs4.BeautifulSoup(locations_response.text, "html.parser")
 	locations_table = locations_soup.find("table", {"class": "wikitable"})
+	assert locations_table is not None
 
 	libraries = {}
-	for row in locations_table.find_all("tr")[1:]:
+	for row in locations_table.find_all("tr")[1:]:  # type: ignore[attr-defined]
 		row_elems = row.find_all("td")
 		library = row_elems[1].get_text().strip()
 		libraries[library] = list(row_elems[3].children)[0].strip()
