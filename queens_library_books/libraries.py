@@ -46,7 +46,7 @@ def _get_queens_library_street_addresses() -> Dict[str, str]:
 
 	locations_url = "https://en.wikipedia.org/wiki/List_of_Queens_Public_Library_branches"
 	locations_response = httpx.get(
-			locations_url, 
+			locations_url,
 			headers={"user-agent": "github.com/domdfcoding/queens-library-books"},
 			)
 	locations_response.raise_for_status()
