@@ -44,7 +44,7 @@ def get_queens_popular_books_2023() -> Dict[str, str]:
 	"""
 
 	books_url = "http://connect.queenslibrary.org/12070"
-	response = httpx.get(books_url)
+	response = httpx.get(books_url, headers={"user-agent": "github.com/domdfcoding/queens-library-books"})
 
 	soup = bs4.BeautifulSoup(response.text, "html.parser")
 	idm_div = soup.find("div", {"id": "idmSge3"})

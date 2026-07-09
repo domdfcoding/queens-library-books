@@ -44,7 +44,11 @@ def _get_queens_library_street_addresses() -> Dict[str, str]:
 	"""
 
 	locations_url = "https://en.wikipedia.org/wiki/List_of_Queens_Public_Library_branches"
-	locations_response = httpx.get(locations_url)
+	locations_response = httpx.get(
+			locations_url, 
+			headers={"user-agent": "github.com/domdfcoding/queens-library-books"},
+			)
+	locations_response.raise_for_status()
 
 	locations_soup = bs4.BeautifulSoup(locations_response.text, "html.parser")
 	locations_table = locations_soup.find("table", {"class": "wikitable"})
@@ -71,16 +75,24 @@ def _get_coords_from_address(  # noqa: PRM002
 	address_for_url = address.split('.')[0].translate(
 			str.maketrans({'\n': ",+", ' ': '+'}),  # type: ignore[arg-type]
 			)
-	get_coord_url = f"https://nominatim.openstreetmap.org/search?q={address_for_url}&format=json"
-	address_resp = httpx.get(get_coord_url)
-	address_data = address_resp.json()
-	if not address_data and fallback_settlement is not None:
-		address_lines = address.split(", ")
-		address_lines[-2] = fallback_settlement
-		address_for_url = ", ".join(address_lines).translate(str.maketrans({' ': '+'}))  # type: ignore[arg-type]
+
+	with httpx.Client(headers={"user-agent": "github.com/domdfcoding/queens-library-books"}) as client:
+
 		get_coord_url = f"https://nominatim.openstreetmap.org/search?q={address_for_url}&format=json"
-		address_resp = httpx.get(get_coord_url)
+		address_resp = client.get(get_coord_url)
+		address_resp.raise_for_status()
 		address_data = address_resp.json()
+
+		if not address_data and fallback_settlement is not None:
+			address_lines = address.split(", ")
+			address_lines[-2] = fallback_settlement
+			transmap = str.maketrans({' ': '+'})
+			address_for_url = ", ".join(address_lines).translate(transmap)
+
+			get_coord_url = f"https://nominatim.openstreetmap.org/search?q={address_for_url}&format=json"
+			address_resp = client.get(get_coord_url)
+			address_resp.raise_for_status()
+			address_data = address_resp.json()
 
 	if not address_data:
 		raise ValueError("Address not found", address)
