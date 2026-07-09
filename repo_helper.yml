@@ -16,7 +16,6 @@ on_pypi: false
 use_whey: true
 
 python_versions:
- - "3.8"
  - "3.9"
  - "3.10"
  - "3.11"

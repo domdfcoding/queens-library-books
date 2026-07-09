@@ -36,7 +36,7 @@ import httpx
 __all__ = ("get_queens_popular_books_2023", )
 
 
-def get_queens_popular_books_2023() -> Dict[str, str]:
+def get_queens_popular_books_2023() -> dict[str, str]:
 	"""
 	Download and parse the list of popular books by library.
 

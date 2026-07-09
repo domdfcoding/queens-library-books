@@ -27,7 +27,7 @@ utilities for Leaflet/Folium.
 #
 
 # stdlib
-from typing import Dict, Mapping, Sequence, Tuple
+from collections.abc import Mapping, Sequence
 
 # 3rd party
 import folium
@@ -45,7 +45,7 @@ def make_markers(
 		book_count: int,
 		location: Sequence[float],
 		colour: str,
-		) -> Tuple[folium.CircleMarker, folium.Marker]:
+		) -> tuple[folium.CircleMarker, folium.Marker]:
 	"""
 	Create markers for a library.
 
@@ -73,7 +73,7 @@ def make_markers(
 	return circle_marker, text_marker
 
 
-def merge_geometry(geojson: Mapping) -> Dict:
+def merge_geometry(geojson: Mapping) -> dict:
 	"""
 	Combine multiple polygons (for e.g. islands or discontinuous areas).
 

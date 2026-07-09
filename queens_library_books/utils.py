@@ -47,7 +47,7 @@ def get_url_for_library(library: str) -> str:
 	return f"https://www.queenslibrary.org/about-us/locations/{library_id}"
 
 
-def load_geojson_for_borough(boundaries_datafile: PathLike, borough_name: str) -> Dict:
+def load_geojson_for_borough(boundaries_datafile: PathLike, borough_name: str) -> dict:
 	"""
 	Get geoJSON for just one borough.
 

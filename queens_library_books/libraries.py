@@ -28,7 +28,7 @@ Functions to parse library locations from Wikipedia.
 
 # stdlib
 import time
-from typing import Dict, Optional, Tuple
+from typing import Optional
 
 # 3rd party
 import bs4
@@ -37,7 +37,7 @@ import httpx
 __all__ = ("get_queens_library_locations", )
 
 
-def _get_queens_library_street_addresses() -> Dict[str, str]:
+def _get_queens_library_street_addresses() -> dict[str, str]:
 	"""
 	Download and parse the list of library locations from Wikipedia.
 
@@ -67,7 +67,7 @@ def _get_queens_library_street_addresses() -> Dict[str, str]:
 def _get_coords_from_address(  # noqa: PRM002
 		address: str,
 		fallback_settlement: Optional[str] = None,
-		) -> Tuple[str, str]:
+		) -> tuple[str, str]:
 	"""
 	Get coordinates for an address from OpenStreetMap.
 	"""
@@ -102,7 +102,7 @@ def _get_coords_from_address(  # noqa: PRM002
 	return address_data[0]["lat"], address_data[0]["lon"]
 
 
-def get_queens_library_locations() -> Dict[str, Tuple[str, Tuple[str, str]]]:
+def get_queens_library_locations() -> dict[str, tuple[str, tuple[str, str]]]:
 	"""
 	Download and parse the list of library locations from Wikipedia.
 
