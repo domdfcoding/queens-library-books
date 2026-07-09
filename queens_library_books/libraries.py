@@ -58,8 +58,8 @@ def _get_queens_library_street_addresses() -> dict[str, str]:
 	libraries = {}
 	for row in locations_table.find_all("tr")[1:]:
 		row_elems = row.find_all("td")
-		library = row_elems[1].get_text().strip()
-		libraries[library] = str(list(row_elems[3].children)[0]).strip()
+		library = row_elems[1].get_text().split('[')[0].strip()
+		libraries[library] = list(row_elems[3].children)[0].get_text().split('[')[0].strip()
 
 	return libraries
 
