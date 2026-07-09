@@ -12,6 +12,9 @@ unused-imports:
 incomplete-defs:
 	tox -e lint -- --select MAN
 
+commas:
+	tox -e lint -- --select C810,C812,C813,C814,C815,C816
+
 vdiff:
 	git diff $(repo-helper show version -q)..HEAD
 
@@ -20,3 +23,8 @@ bare-ignore:
 
 lint: unused-imports incomplete-defs bare-ignore
 	tox -n qa
+
+uncomm:
+  git status -uall --ignored
+
+# Custom commands can be added below this comment
