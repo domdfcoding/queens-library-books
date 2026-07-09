@@ -49,7 +49,8 @@ def get_queens_popular_books_2023() -> Dict[str, str]:
 	soup = bs4.BeautifulSoup(response.text, "html.parser")
 	idm_div = soup.find("div", {"id": "idmSge3"})
 	assert idm_div is not None
-	by_location_div = idm_div.find("div", {"id": "mce_23"})  # type: ignore[attr-defined]
+	by_location_div = idm_div.find("div", {"id": "mce_23"})
+	assert by_location_div is not None
 
 	books = {}
 	for location_p in by_location_div.children:

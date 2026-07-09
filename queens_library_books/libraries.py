@@ -51,15 +51,18 @@ def _get_queens_library_street_addresses() -> Dict[str, str]:
 	assert locations_table is not None
 
 	libraries = {}
-	for row in locations_table.find_all("tr")[1:]:  # type: ignore[attr-defined]
+	for row in locations_table.find_all("tr")[1:]:
 		row_elems = row.find_all("td")
 		library = row_elems[1].get_text().strip()
-		libraries[library] = list(row_elems[3].children)[0].strip()
+		libraries[library] = str(list(row_elems[3].children)[0]).strip()
 
 	return libraries
 
 
-def _get_coords_from_address(address: str, fallback_settlement: Optional[str] = None) -> Tuple[str, str]:
+def _get_coords_from_address(  # noqa: PRM002
+		address: str,
+		fallback_settlement: Optional[str] = None,
+		) -> Tuple[str, str]:
 	"""
 	Get coordinates for an address from OpenStreetMap.
 	"""
@@ -101,7 +104,7 @@ def get_queens_library_locations() -> Dict[str, Tuple[str, Tuple[str, str]]]:
 			# Special case for Wikipedia's data
 			street_address.replace("14 Road", "14th Road"),
 			fallback_settlement="Queens",
-			)
+		)
 
 		library_locations[library] = (street_address, (lat, lon))
 

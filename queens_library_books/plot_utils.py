@@ -30,8 +30,8 @@ utilities for Leaflet/Folium.
 from typing import Dict, Mapping, Sequence, Tuple
 
 # 3rd party
-import folium  # type: ignore[import]
-from shapely.geometry import Polygon, mapping  # type: ignore[import]
+import folium
+from shapely.geometry import Polygon, mapping
 
 # this package
 from queens_library_books.utils import get_url_for_library
@@ -53,7 +53,7 @@ def make_markers(
 	:param book: The book name.
 	:param book_count: The total number of libraries where this was the most popular book, including this library.
 	:param location: The library's coordinates.
-	:param color: Marker colour.
+	:param colour: Marker colour.
 	"""
 
 	popup_book_name = book.split(" – ")
@@ -89,7 +89,7 @@ def merge_geometry(geojson: Mapping) -> Dict:
 
 	for coordinates in geometry[1:]:
 		new_polygon = Polygon([(coor[0], coor[1]) for coor in coordinates[0]])
-		polygon_1 = polygon_1.union(new_polygon)
+		polygon_1 = polygon_1.union(new_polygon)  # type: ignore[assignment]
 
 	# Polygon to cover the whole world
 	polygon_2 = Polygon([[0, 90], [180, 90], [180, -90], [0, -90], [-180, -90], [-180, 0], [-180, 90], [0, 90]])

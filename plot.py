@@ -31,7 +31,7 @@ from collections import defaultdict
 from operator import itemgetter
 
 # 3rd party
-import folium  # type: ignore[import]
+import folium
 from domdf_python_tools.paths import PathPlus
 
 # this package
