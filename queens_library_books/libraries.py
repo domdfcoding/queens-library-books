@@ -27,6 +27,7 @@ Functions to parse library locations from Wikipedia.
 #
 
 # stdlib
+import time
 from typing import Dict, Optional, Tuple
 
 # 3rd party
@@ -89,6 +90,7 @@ def _get_coords_from_address(  # noqa: PRM002
 			transmap = str.maketrans({' ': '+'})
 			address_for_url = ", ".join(address_lines).translate(transmap)
 
+			time.sleep(20)
 			get_coord_url = f"https://nominatim.openstreetmap.org/search?q={address_for_url}&format=json"
 			address_resp = client.get(get_coord_url)
 			address_resp.raise_for_status()
@@ -110,6 +112,7 @@ def get_queens_library_locations() -> Dict[str, Tuple[str, Tuple[str, str]]]:
 	library_locations = {}
 
 	for library, street_address in _get_queens_library_street_addresses().items():
+		time.sleep(20)
 
 		lat, lon = _get_coords_from_address(
 
