@@ -1,5 +1,6 @@
 beautifulsoup4>=4.12.2
-domdf-python-tools>=3.8.0.post2
-folium>=0.15.1
+domdf-folium-tools>=0.1.0b35
+domdf-python-tools>=3.10.0
+folium>=0.18.0
 httpx>=0.26.0
 shapely>=2.0.2

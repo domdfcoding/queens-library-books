@@ -32,11 +32,14 @@ from operator import itemgetter
 
 # 3rd party
 import folium
+from domdf_folium_tools import set_branca_random_seed
 from domdf_python_tools.paths import PathPlus
 
 # this package
 from queens_library_books.plot_utils import make_markers, merge_geometry
 from queens_library_books.utils import load_geojson_for_borough
+
+set_branca_random_seed("QUEENS")
 
 locations_by_book = defaultdict(list)
 library_names = []
