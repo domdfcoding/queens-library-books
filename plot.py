@@ -114,4 +114,5 @@ for library_name in libraries:
 			):
 		marker.add_to(m)
 
-m.save("books/map.html")
+root = m.get_root()
+PathPlus("books/map.html").write_clean(root.render())
