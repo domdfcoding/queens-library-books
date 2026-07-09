@@ -51,7 +51,7 @@ for location, book in PathPlus("data/books.json").load_json().items():
 libraries = PathPlus("data/libraries.json").load_json()
 
 # Centre map on Queens
-m = folium.Map(location=[40.675, -73.8729094], zoom_start=11)
+m = folium.Map(location=[40.675, -73.8729094], zoom_start=11, font_size="1.5rem")
 
 # Get geoJSON for just Queens
 queens_geojson = load_geojson_for_borough("data/Borough Boundaries.geojson", "Queens")

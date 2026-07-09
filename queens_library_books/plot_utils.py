@@ -58,9 +58,13 @@ def make_markers(
 
 	popup_book_name = book.split(" – ")
 
+	R, G, B = int("0x" + colour[1:], 16).to_bytes(3, "big")
+	brightness = R * 0.299 + G * 0.587 + B * 0.114
+	font_colour = "#000000" if brightness > 186 else "#FFFFFF"
+
 	circle_marker = folium.CircleMarker(location=location, radius=5, weight=20, color=colour)
 
-	text_html = f"<div style='display: flex; justify-content: center; align-items: center; font-size: 20pt'>{book_count}</div>"
+	text_html = f"<div style='margin-top: 2px; display: flex; justify-content: center; align-items: center; font-size: 16pt; color: {font_colour}'>{book_count}</div>"
 	popup_html = f"<h3><a href='{get_url_for_library(library)}' target='_blank'>{library}</a></h3><h4>{popup_book_name[0]}</h4><h5>{popup_book_name[1]}</h5>Most popular book at {book_count} libraries"
 
 	text_marker = folium.Marker(
