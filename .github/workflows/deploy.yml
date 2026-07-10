@@ -33,7 +33,9 @@ jobs:
 
       - name: Build
         run: |
+          set +e
           python3 get_data.py
+          set -e
           python3 plot.py
 
       - name: Deploy to GitHub Pages 🚀
