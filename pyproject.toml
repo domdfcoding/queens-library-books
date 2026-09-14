@@ -56,5 +56,8 @@ reformat = true
 [tool.dependency-dash."requirements.txt"]
 order = 10
 
+[tool.dep_checker]
+allowed_unused = [ "domdf-python-tools",]
+
 [tool.dep_checker.name_mapping]
 beautifulsoup4 = "bs4"
